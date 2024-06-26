@@ -75,7 +75,7 @@ jobs:
           rsync --delete -r ./util/plotting/correl-html/ ghci@tgrogers-pc01:/home/ghci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/
           BODY="Correlation Report at: https://tgrogers-pc01.ecn.purdue.edu/github-ci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/"
           SUBJECT="Github CI - $GITHUB_REF SUCCESS"
-          TO="pan251@purdue.edu"
+          TO="${{ secrets.GROUP_EMAIL }}"
           echo "$BODY" | mail -s "$SUBJECT" "$TO"
           echo "$BODY"
   PTX-Simulation:

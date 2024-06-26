@@ -48,10 +48,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: mail test
+        env:
+          RECIPIENT: ${{ secrets.GROUP_EMAIL }}
         run: |
           BODY="Github CI - Build $GITHUB_REF SUCCESS.\nBranch or PR Name: $GITHUB_REF_NAME\nCorrelation Report at: https://tgrogers-pc01.ecn.purdue.edu/github-ci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/."
           SUBJECT="Github CI - Build $GITHUB_REF SUCCESS"
-          TO="${{ secrets.GROUP_EMAIL }}"
-          echo "${{ secrets.GROUP_EMAIL }}"
+          TO="RECIPIENT"
+          echo "$RECIPIENT"
           echo "$BODY" | mail -s "$SUBJECT" "$TO"
           echo "Correlation Report at: https://tgrogers-pc01.ecn.purdue.edu/github-ci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/."
