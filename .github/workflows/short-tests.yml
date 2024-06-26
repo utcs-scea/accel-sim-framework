@@ -49,8 +49,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: mail test
         run: |
-          BODY="Correlation Report at: https://tgrogers-pc01.ecn.purdue.edu/github-ci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/"
-          SUBJECT="Github CI - $GITHUB_REF SUCCESS"
-          TO="pan251@purdue.edu"
+          BODY="Github CI - Build $GITHUB_REF SUCCESS. 
+          Branch/PR Name: $GITHUB_REF_NAME
+          Correlation Report at: https://tgrogers-pc01.ecn.purdue.edu/github-ci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/."
+          SUBJECT="Github CI - Build $GITHUB_REF SUCCESS"
+          TO="${{ secrets.GROUP_EMAIL }}"
           echo "$BODY" | mail -s "$SUBJECT" "$TO"
           echo "$BODY"
