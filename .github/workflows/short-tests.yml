@@ -45,19 +45,3 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run Simulation
         run: echo "skipped Tracer-Simulation. Will perform in merge queue"
-  mail-test:
-    runs-on: tgrogers-raid
-    defaults:
-      run:
-        shell: bash
-    steps:
-      - uses: actions/checkout@v4
-      - name: mail test
-        run: |
-          BODY="Github CI - Build $GITHUB_REF SUCCESS.
-          Branch/PR Name: $GITHUB_REF_NAME
-          Correlation Report at: https://tgrogers-pc01.ecn.purdue.edu/github-ci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/."
-          SUBJECT="Github CI - Build $GITHUB_REF SUCCESS"
-          TO="${{ secrets.GROUP_EMAIL }}"
-          echo "$BODY" | mail -s "$SUBJECT" "$TO"
-          echo "Correlation Report at: https://tgrogers-pc01.ecn.purdue.edu/github-ci/accel-sim/correl/git_${GITHUB_REF}"_"$GITHUB_RUN_NUMBER"_"$GITHUB_RUN_ATTEMPT/."
