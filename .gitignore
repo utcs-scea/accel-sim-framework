@@ -1,3 +1,12 @@
+cscope.files
+cscope.in.out
+cscope.out
+cscope.po.out
+cs.sh
+*.sw*
+tags
+*.log
+
 env-setup/
 gpu-app-collection/
 hw_run/
